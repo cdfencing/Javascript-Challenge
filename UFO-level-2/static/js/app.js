@@ -9,7 +9,7 @@ tableData.forEach(function(ufoSighting) {
     // Append one table row
     let row = tbody.append("tr");
 
-    // console.log for each UFO Sighting value
+    // console.log for per UFO Sighting value
     Object.entries(ufoSighting).forEach(function([key, value]) {
       console.log(key, value);
       

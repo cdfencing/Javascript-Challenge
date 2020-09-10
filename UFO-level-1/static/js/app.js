@@ -5,7 +5,7 @@ console.log(tableData);
 // Get a reference to the table body
 let tbody = d3.select("tbody");
 
-// get the UFO Sighting values for each column
+// get the UFO Sighting values, per column
 tableData.forEach(function(ufoSighting) {
     console.log(ufoSighting);
     // Append table row `tr` for each UFO Sighting 
@@ -40,7 +40,7 @@ button.on("click", function() {
     filteredData.forEach(function(selections) {
 
     console.log(selections);
-    // Append table row `tr` for each UFO Sighting 
+    // Append table row `tr` per UFO Sighting 
     let row = tbody.append("tr");
     
     Object.entries(selections).forEach(function([key, value]) {
