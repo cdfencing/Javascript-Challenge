@@ -2,52 +2,56 @@
 let tableData = data;
 console.log(tableData);
 
-// Get a reference to the table body
 let tbody = d3.select("tbody");
 
-// get the UFO Sighting values, per column
-tableData.forEach(function(ufoSighting) {
-    console.log(ufoSighting);
-    // Append table row `tr` for each UFO Sighting 
-    let row = tbody.append("tr");
-
-    Object.entries(ufoSighting).forEach(function([key, value]) {
-      console.log(key, value);
-
-      let cell = row.append("td");
-      cell.text(value);
+function buildTable(tableData){
+    //clear the table if has data
+    tbody.html("")
+    //loop thru the data
+    tableData.forEach(dataEntry =>{
+        let row = tbody.append("tr");
+        Object.entries(dataEntry).forEach(([key,value])=>{
+            let cell = row.append("td");
+            cell.text(value);
+        });
     });
-  });
+}
 
-// Select the button
 let button = d3.select("#filter-btn");
 button.on("click", function() {
 
     tbody.html("");
 
-    // Select input date
-    let inputElement = d3.select("#datetime");
+    // Select input
+    let inputDate = d3.select("#datetime");
+
     // Get the values
-    let inputValue = inputElement.property("value");
-    
-    console.log(inputValue);
-    // Filter the data
-    let filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
-    
-    console.log(filteredData);
+    let inputValueDate = inputDate.property("value").trim();
 
-
-    filteredData.forEach(function(selections) {
-
-    console.log(selections);
-    // Append table row `tr` per UFO Sighting 
-    let row = tbody.append("tr");
-    
-    Object.entries(selections).forEach(function([key, value]) {
-        console.log(key, value);
+    let filteredDate = tableData.filter(tableData => tableData.datetime ===inputValueDate)
         
-        let cell = row.append("td");
-        cell.text(value);
-    });
+    
+    //clear the table
+    tbody.html("")
+
+    let result = {
+        filteredAll, filteredDCS, filteredDC, filteredDS, filteredCS, filteredDate, filteredCity, filteredState, filteredCountry,filteredShape
+    }
+
+    if (filteredDate.length !=0){
+            buildTable(filteredDate)
+
+        }
+        else {
+            tbody.append("tr").append("td").text("No filter try something else")
+        }
+
 });
+
+buildTable(tableData);
+
+let resetButton = d3.select("#reset-btn")
+resetButton.on("click", function(){
+    tbody.html("")
+    buildTable(tableData)
 });
