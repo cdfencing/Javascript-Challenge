@@ -43,7 +43,7 @@ button.on("click", function() {
 
         }
         else {
-            tbody.append("tr").append("td").text("No filter try something else")
+            tbody.append("tr").append("td").text("No data available, try something else")
         }
 
 });
